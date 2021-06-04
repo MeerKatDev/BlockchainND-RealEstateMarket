@@ -53,7 +53,8 @@ zokrates compile -i square.code
 
 zokrates setup
 
-zokrates compute-witness -a <a> <b> # we can input infinite arguments, in our case there are two, numeric.
+# we can input infinite arguments, in our case we need two numbers.
+zokrates compute-witness -a <a> <b>
 
 zokrates generate-proof
 
