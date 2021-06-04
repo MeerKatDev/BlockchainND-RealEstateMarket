@@ -8,9 +8,9 @@ contract('TestSquareVerifier', accounts => {
 
     const account = accounts[0];
 
-    describe('Test verification with correct proof', function () {
+    describe('Test verification', function () {
 
-        it('verification with correct proof', async function () {
+        it('with correct proof', async function () {
 
             const contractCustomVerifier = await customVerifier.new({ from: account });
     		const {a, b, c} = proof.proof;
@@ -19,7 +19,7 @@ contract('TestSquareVerifier', accounts => {
             assert(result, "Proof is incorrect");
         });
 
-        it('Test verification with incorrect proof', async function () {
+        it('with incorrect proof', async function () {
             let incorrectInputs = [-1, 5];
 
             const contractCustomVerifier = await customVerifier.new({ from: account });

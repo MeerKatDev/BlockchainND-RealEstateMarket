@@ -41,7 +41,7 @@ contract('TestERC721Mintable', accounts => {
         })
     });
 
-    describe('have ownership properties', function () {
+    describe('has ownership properties', function () {
         beforeEach(async function () { 
             this.contract = await ERC721MintableComplete.new({ from: accountOne });
         })
