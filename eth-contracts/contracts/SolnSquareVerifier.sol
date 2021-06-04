@@ -36,7 +36,7 @@ contract SolnSquareVerifier is CustomERC721Token {
     event SolutionAdded(address to, uint256 index);
 
 	// TODO Create a function to add the solutions to the array and emit the event
-    function addSolutionToArray(address to, uint256 index, bytes32 solutionKey) external {
+    function addSolutionToArray(address to, uint256 index, bytes32 solutionKey) public {
         Solution memory solution = Solution(index, to);
         solutionsArray.push(solution);
 

@@ -15,7 +15,7 @@ contract('TestSolnSquareVerifier', accounts => {
 
     	const {a, b, c} = proof.proof;
 
-        bytes32 solutionKey = keccak256(abi.encodePacked(a, b, c, input));
+        let solutionKey = keccak256(abi.encodePacked(a, b, c, input));
 
         let addedSolution = await solnSquareVerifier.addSolutionToArray(accountTwo, 1, solutionKey);
 
