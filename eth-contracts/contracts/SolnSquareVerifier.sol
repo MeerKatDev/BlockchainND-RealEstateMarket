@@ -36,7 +36,7 @@ contract SolnSquareVerifier is CustomERC721Token {
     event SolutionAdded(address to, uint256 index);
 
 	// TODO Create a function to add the solutions to the array and emit the event
-    function addSolutionToArray(address to, uint256 index, bytes32 solutionKey) internal {
+    function addSolutionToArray(address to, uint256 index, bytes32 solutionKey) external {
         Solution memory solution = Solution(index, to);
         solutionsArray.push(solution);
 
@@ -47,8 +47,9 @@ contract SolnSquareVerifier is CustomERC721Token {
 	// TODO Create a function to mint new NFT only after the solution has been verified
 	//  - make sure the solution is unique (has not been used before)
 	//  - make sure you handle metadata as well as tokenSuplly
-    function mint(address _to, uint256 _tokenId, uint[2] memory a, uint[2][2] memory b, uint[2] memory c, uint[2] memory input)
+    function mint(address _to, uint256 _tokenId, uint256[2] memory a, uint256[2][2] memory b, uint256[2] memory c, uint256[2] memory input)
     public
+    returns(bool)
     {
         // hash solution to get key
         bytes32 solutionKey = keccak256(abi.encodePacked(a, b, c, input));
@@ -60,7 +61,8 @@ contract SolnSquareVerifier is CustomERC721Token {
         require(verifierContract.verifyTx(a, b, c, input), "Solution incorrect");
 
         addSolutionToArray(_to, _tokenId, solutionKey);
-        //  - make sure you handle metadata as well as tokenSuplly
+
+        //  - make sure you handle metadata as well as tokenSupply
         super.mint(_to, _tokenId);
     }
 }
