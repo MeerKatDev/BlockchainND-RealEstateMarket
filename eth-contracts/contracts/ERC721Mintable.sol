@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.1;
 
 import 'openzeppelin-solidity/contracts/utils/Address.sol';
 import 'openzeppelin-solidity/contracts/drafts/Counters.sol';
@@ -15,7 +15,7 @@ contract Ownable {
     //  2) create an internal constructor that sets the _owner var to the creater of the contract 
     constructor() internal {
         _owner = msg.sender;
-        emit OwnershipTransferred(_owner, _owner);
+        emit OwnershipTransferred(address(0), _owner);
     }
 
     function getOwner() public view returns(address)
@@ -40,7 +40,7 @@ contract Ownable {
         address oldOwner = _owner;
         _owner = newOwner;
 
-        emit OwnershipTransferred(oldOwner, newOwner);
+        emit OwnershipTransferred(oldOwner, _owner);
     }
 }
 
@@ -567,7 +567,3 @@ contract CustomERC721Token is ERC721Metadata("Real Estate","RE","https://s3-us-w
     }
 
 }
-
-
-
-
