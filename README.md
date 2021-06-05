@@ -85,7 +85,12 @@ cd eth-contracts
 truffle migrate --network rinkeby
 ```
 
-I saved the log under rinkeby-deployment.log .
+I saved the log under rinkeby-deployment.log, below are the addresses and ABIs.
+
+ - CustomVerifier address on Rinkeby: [0x3A0382822c3663B232E1b8D8F71cB7C50B26ba16](https://rinkeby.etherscan.io/address/0x3A0382822c3663B232E1b8D8F71cB7C50B26ba16)
+
+ - SolnSquareVerifier address on Rinkeby: [0x3410AdbaDB55Da6C3a18ABb3FC3eAF4ef5531d5e](https://rinkeby.etherscan.io/address/0x3410AdbaDB55Da6C3a18ABb3FC3eAF4ef5531d5e)
+
 
 # Project Resources
 
