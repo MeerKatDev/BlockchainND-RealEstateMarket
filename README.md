@@ -91,6 +91,8 @@ I saved the log under rinkeby-deployment.log, below are the addresses and ABIs.
 
  - SolnSquareVerifier address on Rinkeby: [0x3410AdbaDB55Da6C3a18ABb3FC3eAF4ef5531d5e](https://rinkeby.etherscan.io/address/0x3410AdbaDB55Da6C3a18ABb3FC3eAF4ef5531d5e)
 
+ Contract ABI is under contract-abi.json in the project root.
+
 
 # Project Resources
 
