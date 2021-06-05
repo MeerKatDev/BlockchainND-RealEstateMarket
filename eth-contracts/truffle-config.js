@@ -17,8 +17,9 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
+require('dotenv').config({path: "../.env"});
 
-// const HDWalletProvider = require('truffle-hdwallet-provider');
+const HDWalletProvider = require("truffle-hdwallet-provider");
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
@@ -94,6 +95,15 @@ module.exports = {
       //  },
       //  evmVersion: "byzantium"
       // }
+    }
+  },
+
+  networks: {
+    rinkeby: {
+        provider: function() {
+          return new HDWalletProvider(process.env.MNEMONIC, "https://rinkeby.infura.io/v3/" + process.env.INFURA_KEY);
+        },
+        network_id: 4
     }
   }
 }

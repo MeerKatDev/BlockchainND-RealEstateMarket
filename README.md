@@ -14,6 +14,12 @@ Install node dependencies and compile contracts, from the project root run:
 npm i && cd eth-contracts && truffle compile
 ```
 
+### Additional packages used
+Apart from the provided packages, I also added
+
+ - `truffle-assertions`: to add assertions interacting with solidity's `require`
+ - `dotenv`: to add the ability of using environment files
+
 ## Testing
 In order to run tests, we can use `truffle`, from `eth-contracts`:
 
@@ -64,7 +70,20 @@ zokrates export-verifier
 and like that we will obtain all the files needed.
 
 ## Deployment
-After setting up `truffle-config.js`, we are ready to go and deploy on any network.
+Since we are only testing, `truffle-config.js` contains the configuration to deploy on INFURA.
+To run the migration, having both keys
+
+```bash
+MNEMONIC=one two three
+INFURA_KEY=<project_id>
+```
+
+in the environment file .env under project root:
+
+```bash
+cd eth-contracts
+truffle migrate --network rinkeby
+```
 
 # Project Resources
 
