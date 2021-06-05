@@ -20,7 +20,7 @@ contract('TestSquareVerifier', accounts => {
         });
 
         it('with incorrect proof', async function () {
-            let incorrectInputs = [-1, 5];
+            let incorrectInputs = [15, 5];
 
             const contractCustomVerifier = await customVerifier.new({ from: account });
     		const {a, b, c} = proof.proof;

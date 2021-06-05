@@ -1,4 +1,5 @@
-var ERC721MintableComplete = artifacts.require('CustomERC721Token');
+const ERC721MintableComplete = artifacts.require('CustomERC721Token');
+const truffleAssert = require('truffle-assertions');
 
 contract('TestERC721Mintable', accounts => {
 
@@ -17,12 +18,12 @@ contract('TestERC721Mintable', accounts => {
 
         it('should return total supply', async function () { 
             let totalSupply = await this.contract.totalSupply.call();
-            assert.equal(totalSupply.toNumber(), 3, 'Couldn\'t to get correct total supply');
+            assert.equal(totalSupply.toNumber(), 2, 'Couldn\'t to get correct total supply');
         })
 
         it('should get token balance', async function () { 
-            let tokensBalance = await this.contract.balanceOf.call(accountThree, { from: accountThree })
-            assert.equal(balance.toNumber(), 2, "Tokens balance of Account 3 incorrect");
+            let tokensBalance = await this.contract.balanceOf.call(accountThree, { from: accountThree });
+            assert.equal(tokensBalance.toNumber(), 1, "Tokens balance of Account 3 incorrect");
         })
 
         // token uri should be complete i.e: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1
@@ -36,7 +37,7 @@ contract('TestERC721Mintable', accounts => {
         it('should transfer token from one owner to another', async function () {
             await this.contract.transferFrom(accountTwo, accountThree, 1, { from: accountTwo });
 
-            let newOwner = await this.contract.ownerOf.call(tokenId, { from: accountThree });
+            let newOwner = await this.contract.ownerOf.call(1, { from: accountThree });
             assert.equal(newOwner, accountThree, "transfer failed");
         })
     });
@@ -47,11 +48,13 @@ contract('TestERC721Mintable', accounts => {
         })
 
         it('should fail when minting when address is not contract owner', async function () {
-            assert.fail(await config.myToken.mint(accountThree, 3, { from: accountTwo }));
+            // assert.throws(await , Error);
+            let failingString = "This function can be called only by the owner";
+            await truffleAssert.reverts(this.contract.mint.call(accountThree, 3, { from: accountTwo }), failingString);
         })
 
         it('should return contract owner', async function () { 
-            let owner = await this.contract._owner.call({ from: accountOne });
+            let owner = await this.contract.getOwner.call(); //.call({ from: accountOne });
             assert.equal(accountOne, owner, "accountOne should be the owner");
         })
 

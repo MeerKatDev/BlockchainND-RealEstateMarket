@@ -15,7 +15,7 @@ contract Ownable {
     //  2) create an internal constructor that sets the _owner var to the creater of the contract 
     constructor() internal {
         _owner = msg.sender;
-        emit OwnershipTransferred(address(0), _owner);
+        emit OwnershipTransferred({oldOwner: address(0), newOwner: _owner});
     }
 
     function getOwner() public view returns(address)
@@ -36,11 +36,11 @@ contract Ownable {
     function transferOwnership(address newOwner) public onlyOwner {
         // TODO add functionality to transfer control of the contract to a newOwner.
         // make sure the new owner is a real address
-        require(Address.isContract(newOwner), "the address is invalid");
+        require(newOwner != address(0), "the address is invalid");
         address oldOwner = _owner;
         _owner = newOwner;
 
-        emit OwnershipTransferred(oldOwner, _owner);
+        emit OwnershipTransferred({oldOwner: oldOwner, newOwner: _owner});
     }
 }
 
@@ -254,7 +254,7 @@ contract ERC721 is Pausable, ERC165 {
 
         // TODO revert if given tokenId already exists or given address is invalid
         require(!_exists(tokenId), 'given tokenId already exists');
-        require(Address.isContract(to), 'the address is invalid');
+        require(to != address(0), 'the address is invalid');
   
         // TODO mint tokenId to given address & increase token count of owner
         _tokenOwner[tokenId] = to;
@@ -272,7 +272,7 @@ contract ERC721 is Pausable, ERC165 {
         require(_tokenOwner[tokenId] == from, "From address must own given token");
 
         // TODO: require token is being transfered to valid address
-        require(Address.isContract(to), 'the address is invalid');
+        require(to != address(0), 'the address is invalid');
         
         // TODO: clear approval
         _clearApproval(tokenId);

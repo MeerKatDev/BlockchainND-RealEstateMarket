@@ -44,6 +44,12 @@ contract SolnSquareVerifier is CustomERC721Token {
     	emit SolutionAdded(to, index);
     }
 
+    // util added for testing
+    // Data location must be "calldata" for parameter in external function
+    function hashToSolutionKey(uint256[2] calldata a, uint256[2][2] calldata b, uint256[2] calldata c, uint256[2] calldata input) external returns(bytes32){
+    	return keccak256(abi.encodePacked(a, b, c, input));
+    }
+
 	// TODO Create a function to mint new NFT only after the solution has been verified
 	//  - make sure the solution is unique (has not been used before)
 	//  - make sure you handle metadata as well as tokenSuplly

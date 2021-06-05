@@ -15,9 +15,9 @@ contract('TestSolnSquareVerifier', accounts => {
 
     	const {a, b, c} = proof.proof;
 
-        let solutionKey = keccak256(abi.encodePacked(a, b, c, input));
+        let solutionKey = await solnSquareVerifier.hashToSolutionKey(a, b, c, proof.inputs);
 
-        let addedSolution = await solnSquareVerifier.addSolutionToArray(accountTwo, 1, solutionKey);
+        let addedSolution = await solnSquareVerifier.addSolutionToArray(accountTwo, 1, solutionKey.tx);
 
         assert.equal(addedSolution.logs[0].event, "SolutionAdded", "Could not add a solution.");
     })
@@ -32,7 +32,7 @@ contract('TestSolnSquareVerifier', accounts => {
 
     	const {a, b, c} = proof.proof;
 
-        let mintingSucceded = await solnSquareVerifier.mint(accountTwo, 1, a, b, c, proof.inputs, { from: accountOne });
+        let mintingSucceded = await solnSquareVerifier.mint(accountTwo, 1, a, b, c, proof.inputs);
 
         assert(mintingSucceded, "Could not mint the token.");
     })
