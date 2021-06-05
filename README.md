@@ -85,6 +85,8 @@ cd eth-contracts
 truffle migrate --network rinkeby
 ```
 
+I saved the log under rinkeby-deployment.log .
+
 # Project Resources
 
 * [Remix - Solidity IDE](https://remix.ethereum.org/)
